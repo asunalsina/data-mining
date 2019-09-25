@@ -1,7 +1,7 @@
 # Function to calculate the gini index
-gini_index <- function(node_sum, node_len){
+gini_index <- function(node){
 
-  p1 = node_sum / node_len
+  p1 = sum(node) / length(node_len)
   p0 = (1 - p1)
 
   gini_impurity = p0 * p1
@@ -16,24 +16,24 @@ best_split <- function(x, y){
   df = sort(unique(x))
   income_mean = (df[1:7] + df[2:8]) / 2
   
-  total_impurity = c()
+  total_quality = c()
   
-  parent_impurity = gini_index(sum(x), length(x))
+  parent_impurity = gini_index(x)
   
   # For loop to calculate the quality of each interval
   for (i in 1:length(income_mean)){
     
     # Interval selection
-    right_child = y[x > income_mean[i]] 
-    left_child = y[x <= income_mean[i]] 
+    right_child = y[x <= income_mean[i]] 
+    left_child = y[x > income_mean[i]] 
     
     # Number of 1 on each node
     right_child_sum = sum(right_child)
     left_child_sum = sum(left_child)
     
     # Impurity of each node using gini_index
-    impurity_right_node = gini_index(right_child_sum, length(right_child))
-    impurity_left_node = gini_index(left_child_sum, length(left_child))
+    impurity_right_node = gini_index(right_child)
+    impurity_left_node = gini_index(left_child)
     
     # Quality of the split according to splits on numeric attributes (slide 31)
     split_quality = impurity_right_node * length(right_child) / length(x) + impurity_left_node * length(left_child) / length(x)
