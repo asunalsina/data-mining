@@ -14,8 +14,8 @@ best_split <- function(x, y){
     
     # Interval selection
     children = split(x, y, feature[i])
-    right_child = children[1]
-    left_child = children[2]
+    right_child = children[[1]]
+    left_child = children[[2]]
     
     # Number of 1 on each node
     right_child_sum = sum(right_child)
@@ -39,7 +39,7 @@ best_split <- function(x, y){
   index_of_interval = match(best_quality, total_quality)
   
   # Value of the selected interval
-  best_interval = income_mean[index_of_interval]
+  best_interval = feature[index_of_interval]
   
   return(best_interval)
 }
