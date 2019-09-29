@@ -1,4 +1,4 @@
-children_nodes = function(x, y, feature, best_split){
+children_nodes <- function(x, y, feature, best_split){
   
   x = cbind(x,y)
   

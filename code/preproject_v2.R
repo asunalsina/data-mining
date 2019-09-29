@@ -10,8 +10,9 @@ source("split_function.R")
 source("best_split.R")
 source("children_nodes_function.R")
 source("majority_function.R")
+source("check_binary function.R")
 source("tree_function.R")
-tree = tree.grow(x, y, 1, 1, length(x))
+tree = tree.grow(x, y, 2, 1, length(x))
 
 a = 36
 feature = 4
