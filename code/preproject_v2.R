@@ -16,6 +16,3 @@ source("check_binary function.R")
 source("tree_function.R")
 
 tree = tree.grow(x, y, nmin, minleaf, length(x))
-
-
-
