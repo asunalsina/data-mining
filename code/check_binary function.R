@@ -1,4 +1,4 @@
-check_binary <- function(x_node, y_node){
+check_binary <- function(x_node, y_node, feature){
   
   if (length(unique(x_node[,feature])) == 2){
     # Binary class
