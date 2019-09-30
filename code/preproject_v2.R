@@ -15,4 +15,5 @@ source("majority_function.R")
 source("check_binary function.R")
 source("tree_function.R")
 
-tree = tree.grow(x, y, nmin, minleaf, length(x))
+#debug(tree.grow)
+tree.grow(x, y, nmin, minleaf, nfeat)

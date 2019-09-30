@@ -3,7 +3,7 @@ best_split <- function(x, y){
   
   # First, we calculate the different possible splits
   df = sort(unique(x))
-  feature = (df[1:7] + df[2:8]) / 2
+  feature = (df[1:(length(df)-1)] + df[2:length(df)]) / 2
   
   total_quality = c()
   
