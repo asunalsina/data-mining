@@ -7,7 +7,7 @@ best_split <- function(x, y){
   
   total_quality = c()
   
-  parent_impurity = gini_index(x)
+  parent_impurity = gini_index(y)
   
   # For loop to calculate the quality of each interval
   for (i in 1:length(feature)){

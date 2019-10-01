@@ -6,23 +6,26 @@ tree.grow <- function(x, y, nmin, minleaf, nfeat){
   tree = data.frame("attribute" = c(), "value" = c(), "left" = c(), "right" = c(), "majority" = c(), stringsAsFactors=FALSE)
   remaining_nodes = list(first_node)
   i = 1
-  
+
   while (length(remaining_nodes) != 0) {
     
     # Split feature and best split based on that feature
-    feature = floor(runif(1, min = 1, max = nfeat + 1))
+    #feature = floor(runif(1, min = 1, max = nfeat + 1))
     
     x_node = remaining_nodes[[1]][,1:(length(remaining_nodes[[1]])-1)]
     y_node = remaining_nodes[[1]]$y
     
+    feature = select_feature(x_node, y_node)
+    
     while (length(unique(x_node[,feature])) == 1 && length(x_node[,feature]) > 1){
-      feature = floor(runif(1, min = 1, max = nfeat + 1))
+      x_node = x_node[,-feature]
+      feature = select_feature(x_node, y_node)
     }
     
     # We check if the node has more than one class
     if(length(y_node) > nmin && length(unique(y_node)) != 1){ # If this is true the node can be split
       
-      split = check_binary(x_node, y_node, feature)
+      split = best_split(x_node[,feature], y_node)
       
       # Get the children nodes
       children = children_nodes(x_node, y_node, feature, split)
