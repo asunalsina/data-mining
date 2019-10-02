@@ -14,7 +14,10 @@ source("children_nodes_function.R")
 source("majority_function.R")
 source("select_feature_function.R")
 source("tree_function.R")
+source("classify_function.R")
 
 
 #debug(tree.grow)
-tree.grow(x, y, nmin, minleaf, nfeat)
+tree = tree.grow(x, y, nmin, minleaf, nfeat)
+
+labels = tree.classify(x, tree)
