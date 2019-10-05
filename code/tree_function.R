@@ -9,12 +9,11 @@ tree.grow <- function(x, y, nmin, minleaf, nfeat){
   
   while(length(remaining_nodes) != 0){
     
-    x = remaining_nodes[[1]][,1:nfeat]
+    x = remaining_nodes[[1]][,1:length(x)]
+    x = random_features(x, nfeat)
     y = remaining_nodes[[1]]$y
-    #print(cat("Y: ", length(y)))
-    
+
     featsplit = evaluate_feature(x, y, minleaf)
-    #print(cat("FS: ", featsplit))
     feature = featsplit[[1]]
     interval = featsplit[[2]]
     no_feature = featsplit[[3]]
@@ -23,8 +22,6 @@ tree.grow <- function(x, y, nmin, minleaf, nfeat){
     children = children_nodes(x, y, feature, interval)
     right_child = children[[1]]
     left_child = children[[2]]
-    #print(cat("Right: ", nrow(right_child)))
-    #print(cat("Left: ", nrow(left_child)))
     
     if(nrow(right_child) < minleaf | nrow(left_child) < minleaf | no_feature == 0){
       m = majority(y)
@@ -51,6 +48,7 @@ tree.grow <- function(x, y, nmin, minleaf, nfeat){
       remaining_nodes = remaining_nodes[-1]
     }
     if(length(y) < minleaf){
+      # Error check
       print("Something wrong")
     }
     }
