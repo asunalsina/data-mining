@@ -1,6 +1,6 @@
 # Data Mining project (UU 2019)
 
-This project consists in a decision tree algorithm created in R.
+This project consists in a decision tree algorithm created in R. This decision tree only makes splits on numerical and binary attributes.
 
 ## Files
 
